@@ -14,18 +14,20 @@ public class UnitTests extends PApplet {
 	MelodyPlayer player; //play a midi sequence
 	MidiFileToNotes midiNotes; // read a midi file
 	
-
+	Tree<Integer> pitchTree;
 	
 	
 	UnitTests() {
 		String filePath = getPath("mid/MaryHadALittleLamb.mid");
 		midiNotes = new MidiFileToNotes(filePath);
 		midiNotes.setWhichLine(0);
+		pitchTree = new Tree<Integer>();
 
 	}
 	
 	void P5UnitTest1() {	// Project 1: Unit Test 1
-		
+		pitchTree.train(midiNotes.getPitchArray());
+		System.out.println("trained");
 	}
 	
 	void P5UnitTest2() {	// Project 1: Unit Test 2

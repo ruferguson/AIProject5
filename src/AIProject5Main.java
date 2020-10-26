@@ -102,7 +102,7 @@ public class AIProject5Main extends PApplet {
 			P5GenerateNotes(); 
 			System.out.println("Generating notes . . . enjoy!");
 		} else if (key == '1') {
-			//unitTest.P5UnitTest1();
+			unitTest.P5UnitTest1();
 		} else if (key == '2') {
 			//unitTest.P5UnitTest2();
 		} else if (key == '3') {

@@ -79,12 +79,24 @@ public class Node<T> {
 	
 	// boolean amIaSuffix(Node node) – is the given node’s tokenSequence a suffix of the input sequence?
 	boolean amIASuffix(Node node) {	// determines whether the tokenSequence of this node is a suffix of the tokenSequence of the input node
+		ArrayList<T> input = node.getTokenSeq();
 		boolean isSuffix = false;
 		if (tokenSequence.isEmpty()) {	// empty string is suffix of everything
 			isSuffix = true;
 			System.out.println("this was true");
-		} 
-	
+		} else {
+			for (int i = 0; i < input.size(); i++) {
+				ArrayList<T> checkSublist = new ArrayList<T>(input.subList(i, input.size()));	//curSequence = find the current sequence of size i		
+				System.out.println("sublist is: " + checkSublist);
+				System.out.println("token seq is: " + tokenSequence);
+
+				int inputIsInTokenSeq = tokenSequence.indexOf(checkSublist);	// find checkSublist in tokenSequence			
+				if (inputIsInTokenSeq == -1) {
+					System.out.println("found");
+					isSuffix = true;
+				}
+			}
+		}
 	//Hint #1: using the sublist() method makes this much easier.
 	//Hint #2: note the difference between .equals() and ==.
 	//Hint #3: You MUST test this separately to make sure it works. That means calling it temporarily from the main class to make sure it works.

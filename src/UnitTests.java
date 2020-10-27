@@ -6,6 +6,7 @@
 import java.io.UnsupportedEncodingException;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import processing.core.PApplet;
 
@@ -15,6 +16,7 @@ public class UnitTests extends PApplet {
 	MidiFileToNotes midiNotes; // read a midi file
 	
 	Tree<Integer> pitchTree;
+	Tree<Character> charTree;
 	
 	
 	UnitTests() {
@@ -22,23 +24,42 @@ public class UnitTests extends PApplet {
 		midiNotes = new MidiFileToNotes(filePath);
 		midiNotes.setWhichLine(0);
 		pitchTree = new Tree<Integer>();
-
+		charTree = new Tree<Character>();
+	}
+	/*	1.Suffix tree output for:  abracadabra
+		2.Suffix tree output for:  acadaacbda
+		3.Suffix tree output for:  abcccdaadcdaabcadad
+		4. Suffix tree output for: Mary Had a Little Lamb (the midi file -- only the pitches are required)  */
+	
+	void P5UnitTest1() {	// Project 5: Unit Test 1
+		// 1. Suffix tree output for:  abracadabra
+		Character[] myList = {'a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a'};
+		ArrayList<Character> testList = new ArrayList(Arrays.asList(myList));
+		charTree.train(testList);
+		charTree.print();
 	}
 	
-	void P5UnitTest1() {	// Project 1: Unit Test 1
+	void P5UnitTest2() {	// Project 5: Unit Test 2
+		// 2. Suffix tree output for:  acadaacbda
+		Character[] myList = {'a', 'c', 'a', 'd', 'a', 'a', 'c', 'b', 'd', 'a'};
+		ArrayList<Character> testList = new ArrayList(Arrays.asList(myList));
+		charTree.train(testList);
+		charTree.print();
+	}
+	
+	void P5UnitTest3() {	// Project 5: Unit Test 3
+		// 3. Suffix tree output for:  abcccdaadcdaabcadad
+		Character[] myList = {'a', 'b', 'c', 'c', 'c', 'd', 'a', 'a', 'd', 'c', 'd', 'a', 'a', 'b', 'c', 'a', 'd', 'a', 'd'};
+		ArrayList<Character> testList = new ArrayList(Arrays.asList(myList));
+		charTree.train(testList);
+		charTree.print();
+	}
+	
+	void P5UnitTest4() {	// Project 5: Unit Test 4
+		// 4. Suffix tree output for: Mary Had a Little Lamb (the midi file -- only the pitches are required)
 		pitchTree.train(midiNotes.getPitchArray());
-		System.out.println("trained");
 		pitchTree.print();
 	}
-	
-	void P5UnitTest2() {	// Project 1: Unit Test 2
-		
-	}
-	
-	void P5UnitTest3() {	// Project 1: Unit Test 3
-		
-	}
-	
 
 	void trainP5() {
 

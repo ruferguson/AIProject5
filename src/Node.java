@@ -30,23 +30,31 @@ public class Node<T> {
 		return children;
 	}
 	
+	
 	//	addNode(Node node) – Adds a child node. Will only add a child node if the input node contains this node as a suffix.
 	boolean addNode(Node node) {
 		boolean found = false; // whether the node has been added or not yet
 		
-		System.out.println("node token seq: " + node.getTokenSeq() + "   this token seq:" + tokenSequence + ".");
+		//System.out.println("node token seq: " + node.getTokenSeq() + "   this token seq:" + tokenSequence + ".");
 
 		if ((node.getTokenSeq()).equals(tokenSequence)) {	// the tokenSequence of this node is the same as the token sequence of the added node
-			System.out.println("in here");
+			//System.out.println("in here");
 			found = true;
 			//	do NOTHING else. You will do things here in the future. But not for now;
 		} else if(amIASuffix(node) || (tokenSequence.size() == 0)) { //note that the empty sequence is always a suffix!
 			//1. try to add the node to all the children nodes.
-			children.add(node);
+			for (int i = 0; i < children.size(); i++) {
+				if ((children.get(i)).amIASuffix(node)) {
+					(children.get(i)).addNode(node);
+					found = true;
+				}
+			}
 			//2. Did one your child nodes add the node? **keep track of this via the found variable**
 			//	 If NOT found and the length of node’s tokenSequence is one less than this tokenSequence
 			//   Add the node to our children array. Thus- found=true.
-			if (!found && children.size() < tokenSequence.size()) {
+			//System.out.println("node size: " + (node.getTokenSeq()).size() + "   this token seq size: " + tokenSequence.size());
+
+			if (!found && (node.getTokenSeq()).size() - 1 == tokenSequence.size()) {
 				children.add(node);
 				found = true;
 			}
@@ -67,10 +75,11 @@ public class Node<T> {
 	//this will produce nicely formatted trees that make sense
 	void print(int numSpacesBefore) {
 		for (int i = 1; i < numSpacesBefore; i++) {	//for 1 to numSpacesBefore
-			System.out.print(" "); //note: don’t use println because you don’t want a line
+			System.out.print("   "); //note: don’t use println because you don’t want a line
 		}
-		System.out.print("––>"); //print an arrow (-->) //if you like, it will be clearer print the token
-		for (int i = 0; i < children.size(); i++) {	//for each node in the children {
+		System.out.print("  ––> "); //print an arrow (-->)
+		System.out.println(this.getTokenSeq());	// print the token
+		for (int i = 0; i < children.size(); i++) {	//for each node in the children
 			// each time you call this from the next child the number of spaces will increase by 1
 			(children.get(i)).print(numSpacesBefore + 1);
 		}
@@ -83,16 +92,19 @@ public class Node<T> {
 		boolean isSuffix = false;
 		if (tokenSequence.isEmpty()) {	// empty string is suffix of everything
 			isSuffix = true;
-			System.out.println("this was true");
+			//System.out.println("empty string was suffix");
 		} else {
 			for (int i = 0; i < input.size(); i++) {
 				ArrayList<T> checkSublist = new ArrayList<T>(input.subList(i, input.size()));	//curSequence = find the current sequence of size i		
-				System.out.println("sublist is: " + checkSublist);
-				System.out.println("token seq is: " + tokenSequence);
+				//System.out.println("sublist is: " + checkSublist);
+				//System.out.println("token seq is: " + tokenSequence);
 
 				int inputIsInTokenSeq = tokenSequence.indexOf(checkSublist);	// find checkSublist in tokenSequence			
-				if (inputIsInTokenSeq == -1) {
-					System.out.println("found");
+				if (inputIsInTokenSeq != -1) {
+					//System.out.println("is a suffix");
+					isSuffix = true;
+				} else if (checkSublist.equals(tokenSequence)) {
+					//System.out.println("are the same");
 					isSuffix = true;
 				}
 			}

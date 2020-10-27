@@ -26,6 +26,11 @@ public class AIProject5Main extends PApplet {
 	UnitTests unitTest = new UnitTests(); // create unit tests
 	
 	
+	//Tree<Character> charTree = new Tree<Character>();
+	//Character[] myList = {'a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a'};
+	//ArrayList<Character> testList = new ArrayList(Arrays.asList(myList));
+	
+	
 	String filePath;
 
 	public static void main(String[] args) {
@@ -58,6 +63,9 @@ public class AIProject5Main extends PApplet {
 		// play the midi notes as they are in the file
 		player.setMelody(midiNotes.getPitchArray());
 		player.setRhythm(midiNotes.getRhythmArray());
+		
+		//charTree.train(testList);
+		//charTree.print();
 	}
 
 	public void draw() {
@@ -104,9 +112,11 @@ public class AIProject5Main extends PApplet {
 		} else if (key == '1') {
 			unitTest.P5UnitTest1();
 		} else if (key == '2') {
-			//unitTest.P5UnitTest2();
+			unitTest.P5UnitTest2();
 		} else if (key == '3') {
-			//unitTest.P5UnitTest3();
+			unitTest.P5UnitTest3();
+		} else if (key == '4') {
+			unitTest.P5UnitTest4();
 		} else if (key == 'o') {		
 			player.hasMelody = false; // stops the player
 		} 

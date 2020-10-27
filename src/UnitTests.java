@@ -1,5 +1,5 @@
 /* Ru Ferguson
- * 12 October 2020
+ * 27 October 2020
  * 
  * This class is used for the unit test methods to consolidate code more nicely. */
 
@@ -17,6 +17,7 @@ public class UnitTests extends PApplet {
 	
 	Tree<Integer> pitchTree;
 	Tree<Character> charTree;
+	ArrayList<Character> testList;
 	
 	
 	UnitTests() {
@@ -26,43 +27,50 @@ public class UnitTests extends PApplet {
 		pitchTree = new Tree<Integer>();
 		charTree = new Tree<Character>();
 	}
-	/*	1.Suffix tree output for:  abracadabra
-		2.Suffix tree output for:  acadaacbda
-		3.Suffix tree output for:  abcccdaadcdaabcadad
-		4. Suffix tree output for: Mary Had a Little Lamb (the midi file -- only the pitches are required)  */
 	
 	void P5UnitTest1() {	// Project 5: Unit Test 1
 		// 1. Suffix tree output for:  abracadabra
 		Character[] myList = {'a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a'};
-		ArrayList<Character> testList = new ArrayList(Arrays.asList(myList));
-		charTree.train(testList);
-		charTree.print();
+		testList = new ArrayList(Arrays.asList(myList));
+		System.out.println("------------------------------");
+		System.out.println("abracadabra: PST L=3");
+		System.out.println("------------------------------");
+		trainP5();
 	}
 	
 	void P5UnitTest2() {	// Project 5: Unit Test 2
 		// 2. Suffix tree output for:  acadaacbda
 		Character[] myList = {'a', 'c', 'a', 'd', 'a', 'a', 'c', 'b', 'd', 'a'};
-		ArrayList<Character> testList = new ArrayList(Arrays.asList(myList));
-		charTree.train(testList);
-		charTree.print();
+		testList = new ArrayList(Arrays.asList(myList));
+		System.out.println("------------------------------");
+		System.out.println("acadaacbda: PST L=3");
+		System.out.println("------------------------------");
+		trainP5();
 	}
 	
 	void P5UnitTest3() {	// Project 5: Unit Test 3
 		// 3. Suffix tree output for:  abcccdaadcdaabcadad
 		Character[] myList = {'a', 'b', 'c', 'c', 'c', 'd', 'a', 'a', 'd', 'c', 'd', 'a', 'a', 'b', 'c', 'a', 'd', 'a', 'd'};
-		ArrayList<Character> testList = new ArrayList(Arrays.asList(myList));
-		charTree.train(testList);
-		charTree.print();
+		testList = new ArrayList(Arrays.asList(myList));
+		System.out.println("------------------------------");
+		System.out.println("abcccdaadcdaabcadad: PST L=3");
+		System.out.println("------------------------------");
+		trainP5();
 	}
 	
 	void P5UnitTest4() {	// Project 5: Unit Test 4
 		// 4. Suffix tree output for: Mary Had a Little Lamb (the midi file -- only the pitches are required)
+		System.out.println("------------------------------");
+		System.out.println("Mary Had a Little Lamb Pitches: PST L=3");
+		System.out.println("------------------------------");
 		pitchTree.train(midiNotes.getPitchArray());
 		pitchTree.print();
 	}
 
 	void trainP5() {
-
+		charTree = new Tree<Character>();
+		charTree.train(testList);
+		charTree.print();
 	}
 
 	void newSong() {

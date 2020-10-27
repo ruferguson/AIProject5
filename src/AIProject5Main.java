@@ -1,6 +1,6 @@
 /* Ru Ferguson
- * 22 October 2020
- * 
+ * 27 October 2020
+ * This project creates and prints prediction suffix trees based on ArrayList<T> inputs.
  */
 
 import processing.core.*;
@@ -39,7 +39,7 @@ public class AIProject5Main extends PApplet {
 
 	//setting the window size to 300x300
 	public void settings() {
-		size(375, 500);
+		size(375, 400);
 	}
 
 	//doing all the setup stuff
@@ -63,9 +63,6 @@ public class AIProject5Main extends PApplet {
 		// play the midi notes as they are in the file
 		player.setMelody(midiNotes.getPitchArray());
 		player.setRhythm(midiNotes.getRhythmArray());
-		
-		//charTree.train(testList);
-		//charTree.print();
 	}
 
 	public void draw() {
@@ -126,21 +123,19 @@ public class AIProject5Main extends PApplet {
 	// display instructions to the user
 	public void showInstructions() {
 		textAlign(CENTER);
-		textSize(25);
+		textSize(30);
 		fill(255, 75, 75);
-		text("Welcome to the", width/2, height*2/28);
-		text("PST Melody Generator", width/2, height*4/28);
-		textSize(16);
-		fill(240, 75, 90);
-		text("Press p to play 35 generated notes", width/2, height*6/28);
-		text("from Super_Mario_Bros_Theme.mid", width/2, height*7/28);
+		text("Welcome to the", width/2, height*2/10);
+		text("PST Generator", width/2, height*3/10);
+		textSize(18);
+		fill(225, 75, 90);
+		text("Press 1 for Project 5: Unit Test 1", width/2, height*5/10);
 		fill(225, 75, 105);
-		text("Press the spacebar to restart original melody", width/2, height*11/28);
-		text("Press o to stop playing", width/2, height*12/28);
-		fill(210, 75, 120);
-		text("Press 1 for Project 5: Unit Test 1", width/2, height*14/28);
-		text("Press 2 for Project 5: Unit Test 2", width/2, height*15/28); 
-		text("Press 3 for Project 5: Unit Test 3", width/2, height*16/28);
+		text("Press 2 for Project 5: Unit Test 2", width/2, height*6/10); 
+		fill(225, 75, 120);
+		text("Press 3 for Project 5: Unit Test 3", width/2, height*7/10);
+		fill(225, 75, 135);
+		text("Press 4 for Project 5: Unit Test 4", width/2, height*8/10);
 	}
 	
 	

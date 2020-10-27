@@ -25,12 +25,6 @@ public class AIProject5Main extends PApplet {
 	MidiFileToNotes midiNotes; //read a midi file
 	UnitTests unitTest = new UnitTests(); // create unit tests
 	
-	
-	//Tree<Character> charTree = new Tree<Character>();
-	//Character[] myList = {'a', 'b', 'r', 'a', 'c', 'a', 'd', 'a', 'b', 'r', 'a'};
-	//ArrayList<Character> testList = new ArrayList(Arrays.asList(myList));
-	
-	
 	String filePath;
 
 	public static void main(String[] args) {
@@ -43,10 +37,7 @@ public class AIProject5Main extends PApplet {
 	}
 
 	//doing all the setup stuff
-	public void setup() {		
-		// create my generators for pitch and rhythm
-	
-				
+	public void setup() {						
 		// returns a url
 		filePath = getPath("mid/Super_Mario_Bros_Theme.mid"); // use this for probabilistic generation
 
@@ -144,7 +135,5 @@ public class AIProject5Main extends PApplet {
 		filePath = getPath("mid/Super_Mario_Bros_Theme.mid");
 		midiNotes = new MidiFileToNotes(filePath);
 		midiNotes.setWhichLine(0);
-		
-		
 	}
 }

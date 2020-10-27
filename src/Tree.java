@@ -26,6 +26,7 @@ public class Tree<T> {
 				ArrayList<T> curSequence = new ArrayList<T>(input.subList(j, j + i));	//curSequence = find the current sequence of size i			
 				newNode = new Node<T>(curSequence); //create a new node with the current sequence
 				root.addNode(newNode);
+				//System.out.println("children: " + root.getChildren());
 			}
 		}
 	}

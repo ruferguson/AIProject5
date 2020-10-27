@@ -28,6 +28,7 @@ public class UnitTests extends PApplet {
 	void P5UnitTest1() {	// Project 1: Unit Test 1
 		pitchTree.train(midiNotes.getPitchArray());
 		System.out.println("trained");
+		pitchTree.print();
 	}
 	
 	void P5UnitTest2() {	// Project 1: Unit Test 2

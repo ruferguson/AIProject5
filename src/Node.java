@@ -10,15 +10,18 @@ public class Node<T> {
 	
 	ArrayList<T> tokenSequence; // the sequence at this node
 	ArrayList<Node> children; // an array of the child nodes
+	int count; // count – the number of times the node appears in the input, initially set to 1
 	
 	Node() {
 		children = new ArrayList<Node>();
 		tokenSequence = new ArrayList<T>();
+		count = 1;
 	}
 	
 	Node(ArrayList<T> curSequence) {
 		children = new ArrayList<Node>();
 		tokenSequence = curSequence;
+		count = 1;
 	}
 	
 	ArrayList<T> getTokenSeq() {
@@ -42,6 +45,7 @@ public class Node<T> {
 				if ((children.get(i)).amIASuffix(node)) {
 					(children.get(i)).addNode(node);
 					found = true;
+					// add one to count 
 				}
 			}
 			// Did one your child nodes add the node?
@@ -97,4 +101,28 @@ public class Node<T> {
 		return isSuffix;
 	}
 	
+	
+	//  – performs elimination based on an empirical probability threshold PMin.
+	// Returns whether to delete this node or not. The parent node performs the deletion.
+	boolean pMinElimination(int totalTokens, float pMin) {
+		// 1. find the number of times that the sequence could have occurred ( dependent on tokenSequence.size() )
+		// 2. shouldRemove = empirical probability of the token sequence < pMin (note: handle the empty sequence / root )
+		// 3. if we should NOT remove this node
+		//{
+		//for each node (start from the end & go to the front of each array):
+		//call pMinElimination on all the children nodes
+		//if they return true (ie, we should remove the node) {
+		//then remove the entire node (which incl. its children)
+		//you may use the ArrayList method .remove() }
+		//}
+		//4. return shouldRemove
+
+		return false;	
+	}
+	 
+	// Note: Another implementation strategy would be to determine the number of times that
+	// the sequence could have occurred by subtracting from the totalTokens parameter when
+	// sending to children rather than calculating it separately in each node. (Similar to
+	// the print(int beforeSpaces) algorithm). This has the advantage of requiring less
+	// operations but it is not required.
 }

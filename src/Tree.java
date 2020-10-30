@@ -12,7 +12,7 @@ public class Tree<T> {
 	Node<T> root; // the root of the tree
 	int L; // maximum token sequence length (or order length) –> chosen by artist/composer/engineer
 	Node<T> newNode;
-	Double Pmin; // Pmin - set in constructor
+	double Pmin; // Pmin - set in constructor
 	int totalInputTokens; // the total number of input tokens
 	
 	Tree() {
@@ -38,7 +38,8 @@ public class Tree<T> {
 		}
 		// sum the total tokens in the input here (totalInputTokens) -- this is most easily
 		// done similarly to how we summed our total tokens in the ProbabilityGenerator.
-		// root.pMinElimination( totalInputTokens, Pmin );
+		totalInputTokens = input.size();
+		root.pMinElimination(totalInputTokens, Pmin);
 	}
 
 	// calls the root to print

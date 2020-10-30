@@ -45,7 +45,7 @@ public class Node<T> {
 				if ((children.get(i)).amIASuffix(node)) {
 					(children.get(i)).addNode(node);
 					found = true;
-					// add one to count 
+					count++; // add one to count 
 				}
 			}
 			// Did one your child nodes add the node?
@@ -104,25 +104,26 @@ public class Node<T> {
 	
 	//  – performs elimination based on an empirical probability threshold PMin.
 	// Returns whether to delete this node or not. The parent node performs the deletion.
-	boolean pMinElimination(int totalTokens, float pMin) {
+	boolean pMinElimination(int totalTokens, double pMin) {
 		// 1. find the number of times that the sequence could have occurred ( dependent on tokenSequence.size() )
 		// 2. shouldRemove = empirical probability of the token sequence < pMin (note: handle the empty sequence / root )
-		// 3. if we should NOT remove this node
-		//{
-		//for each node (start from the end & go to the front of each array):
-		//call pMinElimination on all the children nodes
-		//if they return true (ie, we should remove the node) {
-		//then remove the entire node (which incl. its children)
-		//you may use the ArrayList method .remove() }
-		//}
-		//4. return shouldRemove
-
-		return false;	
+		boolean shouldRemove = false;
+		
+		if (!shouldRemove) {	// 3. if we should NOT remove this node
+			for (int i = children.size() - 1; i > 0; i--) {	//for each node (start from the end & go to the front of each array):
+				boolean shouldRemoveChild = (children.get(i)).pMinElimination(totalTokens, pMin); //call pMinElimination on all the children nodes
+				if (shouldRemoveChild) {	//if they return true (ie, we should remove the node) {
+					children.remove(i);	//then remove the entire node (which incl. its children)
+					//you may use the ArrayList method .remove() }
+				}	
+			}
+		}
+		return shouldRemove;	//4. return shouldRemove
 	}
 	 
 	// Note: Another implementation strategy would be to determine the number of times that
 	// the sequence could have occurred by subtracting from the totalTokens parameter when
 	// sending to children rather than calculating it separately in each node. (Similar to
 	// the print(int beforeSpaces) algorithm). This has the advantage of requiring less
-	// operations but it is not required.
+	// operations but it is not required.  
 }

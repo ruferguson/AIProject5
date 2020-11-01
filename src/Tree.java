@@ -1,5 +1,5 @@
 /* Ru Ferguson
- * 27 October 2020
+ * 4 November 2020
  * 
  * This class holds the root node and interacts with the tree via the root node. The tree does not
  * perform actions of adding nodes or traversing the tree beyond its calls to the root node. */
@@ -21,10 +21,10 @@ public class Tree<T> {
 		Pmin = 0.1;
 	}
 	
-	Tree(int i) {
+	Tree(int i, double k) {
 		root = new Node<T>();
 		L = i; // input parameter chooses L
-		Pmin = 0.1;
+		Pmin = k;
 	}
 		
 	// creates the unique token sequences from the input & using the root, adds them to the tree

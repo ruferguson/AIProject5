@@ -1,7 +1,8 @@
 /* Ru Ferguson
- * 27 October 2020
+ * 4 November 2020
  * 
  * This class creates Node objects which each represent one node in the prediction suffix tree.
+ * Nodes can also be removed using Pmin elimination.
  */
 
 import java.util.ArrayList;
@@ -102,33 +103,22 @@ public class Node<T> {
 	}
 	
 	
-	//  – performs elimination based on an empirical probability threshold PMin.
 	// Returns whether to delete this node or not. The parent node performs the deletion.
 	boolean pMinElimination(int totalTokens, double pMin) {
-		// 1. find the number of times that the sequence could have occurred ( dependent on tokenSequence.size() )
+		// find the number of times that the sequence could have occurred (dependent on tokenSequence.size())
 		double empProb = (double) this.count / (totalTokens - (tokenSequence.size() - 1));
-		//System.out.println(this.count + "   "  + totalTokens + "   " + empProb + "   this is: " + this.getTokenSeq());
 
-		// 2. shouldRemove = empirical probability of the token sequence < pMin (note: handle the empty sequence / root )
+		// shouldRemove = empirical probability of the token sequence < pMin (note: handle the empty sequence / root )
 		boolean shouldRemove = (empProb < pMin) && (!this.getTokenSeq().isEmpty());
-		//System.out.println((empProb < pMin) + "   "  + (!this.getTokenSeq().isEmpty()) + "   ");
 
-		if (!shouldRemove) {	// 3. if we should NOT remove this node
-			for (int i = children.size() - 1; i >= 0; i--) {	//for each node (start from the end & go to the front of each array):
-				boolean shouldRemoveChild = (children.get(i)).pMinElimination(totalTokens, pMin); //call pMinElimination on all the children nodes
-				//System.out.println("child: " + shouldRemoveChild);
-				if (shouldRemoveChild) {	//if they return true (ie, we should remove the node) {
-					children.remove(i);	//then remove the entire node (which incl. its children)
-					//you may use the ArrayList method .remove()
+		if (!shouldRemove) {	// if we should NOT remove this node
+			for (int i = children.size() - 1; i >= 0; i--) {	// for each node (start from the end & go to the front of each array)
+				boolean shouldRemoveChild = (children.get(i)).pMinElimination(totalTokens, pMin); // call pMinElimination on all the children nodes
+				if (shouldRemoveChild) {	// if we should remove the node
+					children.remove(i);	// remove the entire node (incl. its children)
 				}	
 			}
 		}
-		return shouldRemove;	//4. return shouldRemove
+		return shouldRemove;
 	}
-	 
-	// Note: Another implementation strategy would be to determine the number of times that
-	// the sequence could have occurred by subtracting from the totalTokens parameter when
-	// sending to children rather than calculating it separately in each node. (Similar to
-	// the print(int beforeSpaces) algorithm). This has the advantage of requiring less
-	// operations but it is not required.  
 }

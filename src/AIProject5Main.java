@@ -1,6 +1,7 @@
 /* Ru Ferguson
- * 27 October 2020
- * This project creates and prints prediction suffix trees based on ArrayList<T> inputs.
+ * 4 November 2020
+ * This project creates and prints prediction suffix trees based on ArrayList<T> inputs and
+ * also implements Pmin elimination.
  */
 
 import processing.core.*;
@@ -119,14 +120,16 @@ public class AIProject5Main extends PApplet {
 		text("Welcome to the", width/2, height*2/10);
 		text("PST Generator", width/2, height*3/10);
 		textSize(18);
+		fill(225, 50, 75);
+		text("Now with Pmin Elimination 0.1 and 0.15", width/2, height*4/10);
 		fill(225, 75, 90);
-		text("Press 1 for Project 5: Unit Test 1", width/2, height*5/10);
+		text("Press 1 for Project 5: Unit Test 1", width/2, height*6/10);
 		fill(225, 75, 105);
-		text("Press 2 for Project 5: Unit Test 2", width/2, height*6/10); 
+		text("Press 2 for Project 5: Unit Test 2", width/2, height*7/10); 
 		fill(225, 75, 120);
-		text("Press 3 for Project 5: Unit Test 3", width/2, height*7/10);
+		text("Press 3 for Project 5: Unit Test 3", width/2, height*8/10);
 		fill(225, 75, 135);
-		text("Press 4 for Project 5: Unit Test 4", width/2, height*8/10);
+		text("Press 4 for Project 5: Unit Test 4", width/2, height*9/10);
 	}
 	
 	
